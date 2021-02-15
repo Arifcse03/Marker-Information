@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">SearchPG</property>
+      <property
+         name="page">/SearchPG.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>SearchPG&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="thumbnailExpanded">false</property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">78.29883</property>
+      <property
+         name="x">202.0</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">EditPG</property>
+      <property
+         name="page">/EditPG.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>EditPG&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">162.29883</property>
+      <property
+         name="x">558.0</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">goEdit</property>
+      <property
+         name="sdm:polyPoints">R46,244.0489,74.44824,517.0,158.44824,L46</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">Back</property>
+      <property
+         name="sdm:polyPoints">L54,515.94916,165.44824,243.0,81.44824,R54</property>
+   </ControlFlowCase>
+</SDM>

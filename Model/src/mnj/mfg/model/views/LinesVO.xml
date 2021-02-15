@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LinesVO"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  RowClass="mnj.mfg.model.views.LinesVORowImpl"
+  ComponentClass="mnj.mfg.model.views.LinesVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="buyer1"
+    ViewObjectName="mnj.mfg.model.lovs.buyer"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="StyleLov1"
+    ViewObjectName="mnj.mfg.model.lovs.StyleLov">
+    <ParameterMap>
+      <PIMap Variable="p_customerID">
+        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="planLov1"
+    ViewObjectName="mnj.mfg.model.lovs.planLov">
+    <ViewCriteriaUsage
+      Name="planLovCriteria"
+      FullName="planLovCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="poc_id">
+        <TransientExpression><![CDATA[PocId]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="planNumber1"
+    ViewObjectName="mnj.mfg.model.lovs.planNumber">
+    <ParameterMap>
+      <PIMap Variable="ratioplan_number">
+        <TransientExpression><![CDATA[Brand]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="patternLov1"
+    ViewObjectName="mnj.mfg.model.lovs.patternLov">
+    <ParameterMap>
+      <PIMap Variable="P_BUYER_ID">
+        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="P_STYLE">
+        <TransientExpression><![CDATA[StyleName]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="P_CUT_NO">
+        <TransientExpression><![CDATA[MarkerPlanNumber]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="MNJSeasonLOV1"
+    ViewObjectName="mnj.mfg.model.lovs.MNJSeasonLOV"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="POC_ID_LOV1"
+    ViewObjectName="mnj.mfg.model.lovs.POC_ID_LOV"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_MarkerPlanNumber"
+    ListVOName="planNumber1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_MarkerPlanNumber_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MarkerPlanNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CutNo"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CutNo"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Brand"
+    ListVOName="planLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_Brand_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Brand"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="RatioplanNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="RatioplanNumber"/>
+      <Item Value="Style"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      />
+  </ListBinding>
+  <ListBinding
+    Name="LOV_ShrinkagePattern"
+    ListVOName="patternLov1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_ShrinkagePattern_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="ShrinkagePattern"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Pattern"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Pattern"/>
+      <Item Value="LengthFrom"/>
+      <Item Value="LengthTo"/>
+      <Item Value="WidthFrom"/>
+      <Item Value="WidthTo"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PocId"
+    ListVOName="POC_ID_LOV1"
+    ListRangeSize="10"
+    NullValueFlag="none"
+    NullValueId="LOV_PocId_LOVUIHints_NullValueId"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="PocId"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="BuyerId"/>
+      <Item Value="Season"/>
+      <Item Value="Attribute1"/>
+      <Item Value="StyleName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PocId"/>
+      <Item Value="BuyerId"/>
+      <Item Value="Buyer"/>
+      <Item Value="Season"/>
+      <Item Value="Style"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PocId"/>
+      <Item Value="Buyer"/>
+      <Item Value="Season"/>
+      <Item Value="Style"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery>
+    <![CDATA[SELECT LinesEO.DIVISION_ID, 
+       LinesEO.HEADER_ID, 
+       LinesEO.LINE_ID, 
+       LinesEO.BUYER_ID, 
+       LinesEO.SEASON, 
+       LinesEO.BRAND, 
+       LinesEO.STYLE_NAME, 
+       LinesEO.MARKER_PLAN_NUMBER, 
+       LinesEO.MARKER_ID, 
+       LinesEO.COLOR, 
+       LinesEO.YDS, 
+       LinesEO.INCH, 
+       LinesEO.METER, 
+       LinesEO.MARKER_WIDTH, 
+       LinesEO.FUNCTIONAL_AREA, 
+       LinesEO.MARKER_EFFICIENCY, 
+       LinesEO.SHRINKAGE_PATTERN, 
+       LinesEO.REMARKS,
+ LinesEO.Marker_Width_Meter,
+ LinesEO.Marker_Area_Inch,
+ LinesEO.ATTRIBUTE1,
+LinesEO.POC_ID,
+poc.Buyer_Id Buyer_Id_New,
+AC.CUSTOMER_NAME,
+poc.Style Style_New,
+poc.Season Season_New
+FROM MNJ_MFG_MARHER_INFO_L LinesEO, xx_om_poc_h_t poc,AR_CUSTOMERS AC
+where LinesEO.poc_id= poc.poc_id and POC.BUYER_ID=AC.CUSTOMER_ID]]>
+  </SQLQuery>
+  <EntityUsage
+    Name="LinesEO"
+    Entity="mnj.mfg.model.entities.LinesEO"/>
+  <ViewAttribute
+    Name="DivisionId"
+    PrecisionRule="true"
+    EntityAttrName="DivisionId"
+    EntityUsage="LinesEO"
+    AliasName="DIVISION_ID"/>
+  <ViewAttribute
+    Name="HeaderId"
+    PrecisionRule="true"
+    EntityAttrName="HeaderId"
+    EntityUsage="LinesEO"
+    AliasName="HEADER_ID"/>
+  <ViewAttribute
+    Name="LineId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="LineId"
+    EntityUsage="LinesEO"
+    AliasName="LINE_ID"/>
+  <ViewAttribute
+    Name="BuyerId"
+    PrecisionRule="true"
+    EntityAttrName="BuyerId"
+    EntityUsage="LinesEO"
+    AliasName="BUYER_ID"/>
+  <ViewAttribute
+    Name="Season"
+    PrecisionRule="true"
+    EntityAttrName="Season"
+    EntityUsage="LinesEO"
+    AliasName="SEASON">
+    <DesignTime>
+      <Attr Name="_diagramName" Value="Buyer"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.LinesVO.Season_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Brand"
+    PrecisionRule="true"
+    EntityAttrName="Brand"
+    EntityUsage="LinesEO"
+    AliasName="BRAND"
+    LOVName="LOV_Brand">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.LinesVO.Brand_LABEL"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StyleName"
+    PrecisionRule="true"
+    EntityAttrName="StyleName"
+    EntityUsage="LinesEO"
+    AliasName="STYLE_NAME">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.LinesVO.StyleName_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MarkerPlanNumber"
+    PrecisionRule="true"
+    EntityAttrName="MarkerPlanNumber"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_PLAN_NUMBER"
+    LOVName="LOV_MarkerPlanNumber">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+        <LABEL
+          ResId="mnj.mfg.model.views.LinesVO.MarkerPlanNumber_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MarkerId"
+    PrecisionRule="true"
+    EntityAttrName="MarkerId"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_ID"/>
+  <ViewAttribute
+    Name="Color"
+    PrecisionRule="true"
+    EntityAttrName="Color"
+    EntityUsage="LinesEO"
+    AliasName="COLOR"/>
+  <ViewAttribute
+    Name="Yds"
+    PrecisionRule="true"
+    EntityAttrName="Yds"
+    EntityUsage="LinesEO"
+    AliasName="YDS"/>
+  <ViewAttribute
+    Name="Inch"
+    PrecisionRule="true"
+    EntityAttrName="Inch"
+    EntityUsage="LinesEO"
+    AliasName="INCH"/>
+  <ViewAttribute
+    Name="Meter"
+    PrecisionRule="true"
+    EntityAttrName="Meter"
+    EntityUsage="LinesEO"
+    AliasName="METER"/>
+  <ViewAttribute
+    Name="MarkerWidth"
+    PrecisionRule="true"
+    EntityAttrName="MarkerWidth"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_WIDTH"/>
+  <ViewAttribute
+    Name="FunctionalArea"
+    PrecisionRule="true"
+    EntityAttrName="FunctionalArea"
+    EntityUsage="LinesEO"
+    AliasName="FUNCTIONAL_AREA"/>
+  <ViewAttribute
+    Name="MarkerEfficiency"
+    PrecisionRule="true"
+    EntityAttrName="MarkerEfficiency"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_EFFICIENCY"/>
+  <ViewAttribute
+    Name="ShrinkagePattern"
+    PrecisionRule="true"
+    EntityAttrName="ShrinkagePattern"
+    EntityUsage="LinesEO"
+    AliasName="SHRINKAGE_PATTERN"
+    LOVName="LOV_ShrinkagePattern">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.views.LinesVO.ShrinkagePattern_LABEL"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Remarks"
+    PrecisionRule="true"
+    EntityAttrName="Remarks"
+    EntityUsage="LinesEO"
+    AliasName="REMARKS"/>
+  <ViewAttribute
+    Name="MarkerWidthMeter"
+    PrecisionRule="true"
+    EntityAttrName="MarkerWidthMeter"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_WIDTH_METER"/>
+  <ViewAttribute
+    Name="MarkerAreaInch"
+    PrecisionRule="true"
+    EntityAttrName="MarkerAreaInch"
+    EntityUsage="LinesEO"
+    AliasName="MARKER_AREA_INCH"/>
+  <ViewAttribute
+    Name="Attribute1"
+    PrecisionRule="true"
+    EntityAttrName="Attribute1"
+    EntityUsage="LinesEO"
+    AliasName="ATTRIBUTE1"/>
+  <ViewAttribute
+    Name="PocId"
+    PrecisionRule="true"
+    EntityAttrName="PocId"
+    EntityUsage="LinesEO"
+    AliasName="POC_ID"
+    LOVName="LOV_PocId">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="BuyerIdNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    AliasName="BUYER_ID_NEW"
+    Expression="BUYER_ID_NEW"
+    SQLType="NUMERIC">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="39"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CustomerName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CUSTOMER_NAME"
+    Expression="CUSTOMER_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="StyleNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="STYLE_NEW"
+    Expression="STYLE_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SeasonNew"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SEASON_NEW"
+    Expression="SEASON_NEW"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

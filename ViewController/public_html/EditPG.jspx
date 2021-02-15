@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1" usesUpload="true" inlineStyle="width:auto;">
+        <af:panelHeader text="Marker Information" id="ph1"
+                        inlineStyle="width:1565px;">
+          <f:facet name="context"/>
+          <f:facet name="menuBar"/>
+          <f:facet name="toolbar"/>
+          <f:facet name="legend"/>
+          <f:facet name="info"/>
+          <af:panelHeader text=" " id="ph3">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelFormLayout id="pfl1" maxColumns="2" rows="2"
+                                inlineStyle="height:185px;">
+              <af:inputText value="#{bindings.Attribute1.inputValue}"
+                            label="Doc No"
+                            required="#{bindings.Attribute1.hints.mandatory}"
+                            columns="#{bindings.Attribute1.hints.displayWidth}"
+                            maximumLength="#{bindings.Attribute1.hints.precision}"
+                            shortDesc="#{bindings.Attribute1.hints.tooltip}"
+                            id="it1" readOnly="true">
+                <f:validator binding="#{bindings.Attribute1.validator}"/>
+              </af:inputText>
+              <af:inputComboboxListOfValues id="buyerId"
+                                            popupTitle="Search and Select: #{bindings.Buyer.hints.label}"
+                                            value="#{bindings.Buyer.inputValue}"
+                                            label="Buyer"
+                                            model="#{bindings.Buyer.listOfValuesModel}"
+                                            required="#{bindings.Buyer.hints.mandatory}"
+                                            columns="#{bindings.Buyer.hints.displayWidth}"
+                                            shortDesc="#{bindings.Buyer.hints.tooltip}"
+                                            visible="false">
+                <f:validator binding="#{bindings.Buyer.validator}"/>
+              </af:inputComboboxListOfValues>
+              <af:inputComboboxListOfValues id="attribute2Id"
+                                            popupTitle="Search and Select: #{bindings.Attribute2.hints.label}"
+                                            value="#{bindings.Attribute2.inputValue}"
+                                            label="Unit Name"
+                                            model="#{bindings.Attribute2.listOfValuesModel}"
+                                            required="#{bindings.Attribute2.hints.mandatory}"
+                                            columns="#{bindings.Attribute2.hints.displayWidth}"
+                                            shortDesc="#{bindings.Attribute2.hints.tooltip}"
+                                            readOnly="true">
+                <f:validator binding="#{bindings.Attribute2.validator}"/>
+                <af:autoSuggestBehavior suggestedItems="#{bindings.Attribute2.suggestedItems}"/>
+              </af:inputComboboxListOfValues>
+              <af:inputDate value="#{bindings.MarkerDate.inputValue}"
+                            label="Date"
+                            required="#{bindings.MarkerDate.hints.mandatory}"
+                            shortDesc="#{bindings.MarkerDate.hints.tooltip}"
+                            id="id1">
+                <f:validator binding="#{bindings.MarkerDate.validator}"/>
+                <af:convertDateTime pattern="#{bindings.MarkerDate.format}"/>
+              </af:inputDate>
+              <f:facet name="footer">
+                <af:group id="g1">
+                  <af:separator id="s1"/>
+                  <af:panelGroupLayout id="pgl1" layout="horizontal">
+                    <af:spacer width="700" height="10" id="s2"/>
+                    <af:commandButton
+                                      text="Save"
+                                      id="cb1" action="#{manager_bean.Save}"/>
+                    <af:commandButton actionListener="#{bindings.Rollback.execute}"
+                                      text="Back"
+                                      immediate="true" id="cb2" action="Back">
+                      <af:resetActionListener/>
+                    </af:commandButton>
+                  </af:panelGroupLayout>
+                </af:group>
+              </f:facet>
+              <af:inputText value="#{bindings.CadOperatorId.inputValue}"
+                            label="CAD Operator ID"
+                            required="#{bindings.CadOperatorId.hints.mandatory}"
+                            columns="#{bindings.CadOperatorId.hints.displayWidth}"
+                            maximumLength="#{bindings.CadOperatorId.hints.precision}"
+                            shortDesc="#{bindings.CadOperatorId.hints.tooltip}"
+                            id="it2" partialTriggers="cadOpName1Id"
+                            readOnly="true">
+                <f:validator binding="#{bindings.CadOperatorId.validator}"/>
+              </af:inputText>
+              <af:inputListOfValues id="cadOpName1Id"
+                                    popupTitle="Search and Select: #{bindings.CadOpName1.hints.label}"
+                                    value="#{bindings.CadOpName1.inputValue}"
+                                    label="CAD Operator Name"
+                                    model="#{bindings.CadOpName1.listOfValuesModel}"
+                                    required="#{bindings.CadOpName1.hints.mandatory}"
+                                    columns="#{bindings.CadOpName1.hints.displayWidth}"
+                                    shortDesc="#{bindings.CadOpName1.hints.tooltip}"
+                                    autoSubmit="true">
+                <f:validator binding="#{bindings.CadOpName1.validator}"/>
+                <af:autoSuggestBehavior suggestedItems="#{bindings.CadOpName1.suggestedItems}"/>
+              </af:inputListOfValues>
+            </af:panelFormLayout>
+          </af:panelHeader>
+        </af:panelHeader>
+        <af:panelHeader text="Marker Lines" id="ph2"
+                        inlineStyle="width:1565px;">
+          <f:facet name="context"/>
+          <f:facet name="menuBar"/>
+          <f:facet name="toolbar"/>
+          <f:facet name="legend"/>
+          <f:facet name="info"/>
+          <af:panelCollection id="pc1" inlineStyle="width:auto;">
+            <f:facet name="menus"/>
+            <f:facet name="toolbar">
+              <af:toolbar id="t2">
+                <af:commandButton actionListener="#{bindings.CreateInsert.execute}"
+                                  text="Create"
+                                  disabled="#{!bindings.CreateInsert.enabled}"
+                                  id="cb3"/>
+                <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                  text="Delete"
+                                  disabled="#{!bindings.Delete.enabled}"
+                                  id="cb4"/>
+                <af:inputFile label="Upload" id="if1"
+                              valueChangeListener="#{manager_bean.fileUploadMarker}"
+                              autoSubmit="true"/>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="statusbar"/>
+            <af:table value="#{bindings.LinesVO1.collectionModel}" var="row"
+                      rows="#{bindings.LinesVO1.rangeSize}"
+                      emptyText="#{bindings.LinesVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{bindings.LinesVO1.rangeSize}"
+                      rowBandingInterval="1"
+                      filterModel="#{bindings.LinesVO1Query.queryDescriptor}"
+                      queryListener="#{bindings.LinesVO1Query.processQuery}"
+                      filterVisible="true" varStatus="vs"
+                      selectedRowKeys="#{bindings.LinesVO1.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.LinesVO1.collectionModel.makeCurrent}"
+                      rowSelection="single" id="t1"
+                      partialTriggers="::cb3 ::cb4" editingMode="clickToEdit"
+                      columnBandingInterval="1" width="100%"
+                      binding="#{manager_bean.markerDetail}">
+              <af:column headerText="POC ID"
+                         id="c2" align="center" sortable="true"
+                         filterable="true" sortProperty="PocId" width="130">
+                <af:inputListOfValues id="pocIdId"
+                                      popupTitle="Search and Select: #{bindings.LinesVO1.hints.PocId.label}"
+                                      value="#{row.bindings.PocId.inputValue}"
+                                      model="#{row.bindings.PocId.listOfValuesModel}"
+                                      required="#{bindings.LinesVO1.hints.PocId.mandatory}"
+                                      columns="#{bindings.LinesVO1.hints.PocId.displayWidth}"
+                                      shortDesc="#{bindings.LinesVO1.hints.PocId.tooltip}"
+                                      autoSubmit="true">
+                  <f:validator binding="#{row.bindings.PocId.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LinesVO1.hints.PocId.format}"/>
+                </af:inputListOfValues>
+              </af:column>
+              <af:column headerText="Buyer"
+                         id="c20" align="center" sortable="true"
+                         filterable="true" sortProperty="CustomerName">
+                <af:outputText value="#{row.CustomerName}" id="ot1"/>
+              </af:column>
+              <af:column headerText="Style"
+                         id="c21" align="center" sortable="true"
+                         filterable="true" sortProperty="StyleNew">
+                <af:outputText value="#{row.StyleNew}" id="ot2"/>
+              </af:column>
+              <af:column headerText="Season"
+                         id="c22" sortable="true" align="center"
+                         filterable="true" sortProperty="SeasonNew">
+                <af:inputText value="#{row.bindings.SeasonNew.inputValue}"
+                              label="#{bindings.LinesVO1.hints.SeasonNew.label}"
+                              required="#{bindings.LinesVO1.hints.SeasonNew.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.SeasonNew.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.SeasonNew.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.SeasonNew.tooltip}"
+                              id="it13">
+                  <f:validator binding="#{row.bindings.SeasonNew.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Buyer"
+                         id="c9" align="center" sortable="true"
+                         filterable="true" sortProperty="Season"
+                         partialTriggers="pocIdId" visible="false">
+                <af:inputText value="#{row.bindings.Season.inputValue}"
+                              label="#{bindings.LinesVO1.hints.Season.label}"
+                              required="#{bindings.LinesVO1.hints.Season.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.Season.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.Season.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.Season.tooltip}"
+                              id="it9" partialTriggers="pocIdId"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.Season.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Style"
+                         id="c17" align="center" sortable="true"
+                         filterable="true" sortProperty="StyleName"
+                         partialTriggers="pocIdId" visible="false">
+                <af:inputText value="#{row.bindings.StyleName.inputValue}"
+                              label="#{bindings.LinesVO1.hints.StyleName.label}"
+                              required="#{bindings.LinesVO1.hints.StyleName.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.StyleName.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.StyleName.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.StyleName.tooltip}"
+                              id="it11" partialTriggers="pocIdId"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.StyleName.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Season"
+                         id="c19" align="center" sortable="true"
+                         filterable="true" sortProperty="Attribute1"
+                         partialTriggers="pocIdId" visible="false">
+                <af:inputText value="#{row.bindings.Attribute1.inputValue}"
+                              label="#{bindings.LinesVO1.hints.Attribute1.label}"
+                              required="#{bindings.LinesVO1.hints.Attribute1.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.Attribute1.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.Attribute1.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.Attribute1.tooltip}"
+                              id="it12" partialTriggers="pocIdId"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.Attribute1.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Cut Plan No"
+                         id="c10" align="center" sortable="true"
+                         filterable="true" sortProperty="Brand">
+                <af:inputListOfValues id="brandId"
+                                      popupTitle="Search and Select: #{bindings.LinesVO1.hints.Brand.label}"
+                                      value="#{row.bindings.Brand.inputValue}"
+                                      model="#{row.bindings.Brand.listOfValuesModel}"
+                                      required="#{bindings.LinesVO1.hints.Brand.mandatory}"
+                                      columns="#{bindings.LinesVO1.hints.Brand.displayWidth}"
+                                      shortDesc="#{bindings.LinesVO1.hints.Brand.tooltip}">
+                  <f:validator binding="#{row.bindings.Brand.validator}"/>
+                </af:inputListOfValues>
+              </af:column>
+              <af:column headerText="Ratio Plan No"
+                         id="c1" align="center" width="115" sortable="true"
+                         filterable="true" sortProperty="MarkerPlanNumber">
+                <af:inputComboboxListOfValues id="markerPlanNumberId"
+                                              popupTitle="Search and Select: #{bindings.LinesVO1.hints.MarkerPlanNumber.label}"
+                                              value="#{row.bindings.MarkerPlanNumber.inputValue}"
+                                              model="#{row.bindings.MarkerPlanNumber.listOfValuesModel}"
+                                              required="#{bindings.LinesVO1.hints.MarkerPlanNumber.mandatory}"
+                                              columns="#{bindings.LinesVO1.hints.MarkerPlanNumber.displayWidth}"
+                                              shortDesc="#{bindings.LinesVO1.hints.MarkerPlanNumber.tooltip}">
+                  <f:validator binding="#{row.bindings.MarkerPlanNumber.validator}"/>
+                </af:inputComboboxListOfValues>
+              </af:column>
+              <af:column sortProperty="MarkerId" filterable="true"
+                         sortable="true"
+                         headerText="Marker ID"
+                         id="c5" align="center" width="116">
+                <af:inputText value="#{row.bindings.MarkerId.inputValue}"
+                              label="#{bindings.LinesVO1.hints.MarkerId.label}"
+                              required="#{bindings.LinesVO1.hints.MarkerId.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.MarkerId.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.MarkerId.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.MarkerId.tooltip}"
+                              id="it14" binding="#{manager_bean.markerId}"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.MarkerId.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column id="c3" headerText="Marker Length" align="center"
+                         width="255">
+                <af:column sortProperty="Yds" filterable="true" sortable="true"
+                           headerText="Yds" id="c12" align="center" width="70">
+                  <af:inputText value="#{row.bindings.Yds.inputValue}"
+                                label="#{bindings.LinesVO1.hints.Yds.label}"
+                                required="#{bindings.LinesVO1.hints.Yds.mandatory}"
+                                columns="#{bindings.LinesVO1.hints.Yds.displayWidth}"
+                                maximumLength="#{bindings.LinesVO1.hints.Yds.precision}"
+                                shortDesc="#{bindings.LinesVO1.hints.Yds.tooltip}"
+                                id="it18" binding="#{manager_bean.yds}"
+                                valueChangeListener="#{manager_bean.valueChanger}"
+                                autoSubmit="true">
+                    <f:validator binding="#{row.bindings.Yds.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column sortProperty="Inch" filterable="true" sortable="true"
+                           headerText="Inch" id="c6" align="center" width="70">
+                  <af:inputText value="#{row.bindings.Inch.inputValue}"
+                                label="#{bindings.LinesVO1.hints.Inch.label}"
+                                required="#{bindings.LinesVO1.hints.Inch.mandatory}"
+                                columns="#{bindings.LinesVO1.hints.Inch.displayWidth}"
+                                maximumLength="#{bindings.LinesVO1.hints.Inch.precision}"
+                                shortDesc="#{bindings.LinesVO1.hints.Inch.tooltip}"
+                                id="it17" binding="#{manager_bean.inches}"
+                                valueChangeListener="#{manager_bean.valueChanger}"
+                                autoSubmit="true">
+                    <f:validator binding="#{row.bindings.Inch.validator}"/>
+                  </af:inputText>
+                </af:column>
+                <af:column headerText="Meter"
+                           id="c13" align="center" width="80">
+                  <af:inputText value="#{row.bindings.Meter.inputValue}"
+                                label="#{bindings.LinesVO1.hints.Meter.label}"
+                                required="#{bindings.LinesVO1.hints.Meter.mandatory}"
+                                columns="#{bindings.LinesVO1.hints.Meter.displayWidth}"
+                                maximumLength="#{bindings.LinesVO1.hints.Meter.precision}"
+                                shortDesc="#{bindings.LinesVO1.hints.Meter.tooltip}"
+                                id="it3" binding="#{manager_bean.meter}"
+                                valueChangeListener="#{manager_bean.valueChanger}"
+                                autoSubmit="true" readOnly="false">
+                    <f:validator binding="#{row.bindings.Meter.validator}"/>
+                    <f:convertNumber maxFractionDigits="2"/>
+                  </af:inputText>
+                </af:column>
+              </af:column>
+              <af:column sortProperty="MarkerWidth" filterable="true"
+                         sortable="true"
+                         headerText="Marker Width (inch)"
+                         id="c4" align="center" width="80">
+                <af:inputText value="#{row.bindings.MarkerWidth.inputValue}"
+                              label="#{bindings.LinesVO1.hints.MarkerWidth.label}"
+                              required="#{bindings.LinesVO1.hints.MarkerWidth.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.MarkerWidth.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.MarkerWidth.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.MarkerWidth.tooltip}"
+                              id="it10" binding="#{manager_bean.markerwidth}"
+                              valueChangeListener="#{manager_bean.valueChanger}"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.MarkerWidth.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Marker Area (Inch)"
+                         id="c15" align="center" width="80">
+                <af:inputText value="#{row.bindings.MarkerAreaInch.inputValue}"
+                              label="#{bindings.LinesVO1.hints.MarkerAreaInch.label}"
+                              required="#{bindings.LinesVO1.hints.MarkerAreaInch.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.MarkerAreaInch.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.MarkerAreaInch.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.MarkerAreaInch.tooltip}"
+                              id="it6" binding="#{manager_bean.markerAreaInch}"
+                              autoSubmit="true" readOnly="true">
+                  <f:validator binding="#{row.bindings.MarkerAreaInch.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LinesVO1.hints.MarkerAreaInch.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Marker Width (Meter)"
+                         id="c14" align="center" width="80">
+                <af:inputText value="#{row.bindings.MarkerWidthMeter.inputValue}"
+                              label="#{bindings.LinesVO1.hints.MarkerWidthMeter.label}"
+                              required="#{bindings.LinesVO1.hints.MarkerWidthMeter.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.MarkerWidthMeter.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.MarkerWidthMeter.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.MarkerWidthMeter.tooltip}"
+                              id="it5"
+                              binding="#{manager_bean.markerWidthMeter}"
+                              readOnly="true" autoSubmit="true">
+                  <f:validator binding="#{row.bindings.MarkerWidthMeter.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LinesVO1.hints.MarkerWidthMeter.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="MarkerEfficiency" filterable="true"
+                         sortable="true" headerText="Marker Efficiency" id="c7"
+                         align="center" width="80">
+                <af:inputText value="#{row.bindings.MarkerEfficiency.inputValue}"
+                              label="#{bindings.LinesVO1.hints.MarkerEfficiency.label}"
+                              required="#{bindings.LinesVO1.hints.MarkerEfficiency.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.MarkerEfficiency.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.MarkerEfficiency.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.MarkerEfficiency.tooltip}"
+                              id="it15"
+                              binding="#{manager_bean.markerefficiency}"
+                              valueChangeListener="#{manager_bean.valueChanger}"
+                              autoSubmit="true">
+                  <f:validator binding="#{row.bindings.MarkerEfficiency.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Shrinkage Pattern"
+                         id="c16" align="center" sortable="true"
+                         filterable="true" sortProperty="ShrinkagePattern">
+                <af:inputListOfValues id="shrinkagePatternId"
+                                      popupTitle="Search and Select: Shrinkage Pattern"
+                                      value="#{row.bindings.ShrinkagePattern.inputValue}"
+                                      model="#{row.bindings.ShrinkagePattern.listOfValuesModel}"
+                                      required="#{bindings.LinesVO1.hints.ShrinkagePattern.mandatory}"
+                                      columns="#{bindings.LinesVO1.hints.ShrinkagePattern.displayWidth}"
+                                      shortDesc="#{bindings.LinesVO1.hints.ShrinkagePattern.tooltip}">
+                  <f:validator binding="#{row.bindings.ShrinkagePattern.validator}"/>
+                </af:inputListOfValues>
+              </af:column>
+              <af:column sortProperty="FunctionalArea" filterable="true"
+                         sortable="true"
+                         headerText="Functional Area (inch)"
+                         id="c11" align="center" width="80">
+                <af:inputText value="#{row.bindings.FunctionalArea.inputValue}"
+                              label="#{bindings.LinesVO1.hints.FunctionalArea.label}"
+                              required="#{bindings.LinesVO1.hints.FunctionalArea.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.FunctionalArea.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.FunctionalArea.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.FunctionalArea.tooltip}"
+                              id="it7" binding="#{manager_bean.functionalarea}"
+                              autoSubmit="true" readOnly="true">
+                  <f:validator binding="#{row.bindings.FunctionalArea.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="Remarks"
+                         id="c8" align="center" width="200">
+                <af:inputText value="#{row.bindings.Remarks.inputValue}"
+                              label="#{bindings.LinesVO1.hints.Remarks.label}"
+                              required="#{bindings.LinesVO1.hints.Remarks.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.Remarks.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.Remarks.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.Remarks.tooltip}"
+                              id="it4">
+                  <f:validator binding="#{row.bindings.Remarks.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column headerText="#{bindings.LinesVO1.hints.BuyerId.label}"
+                         id="c18" visible="false">
+                <af:inputText value="#{row.bindings.BuyerId.inputValue}"
+                              label="#{bindings.LinesVO1.hints.BuyerId.label}"
+                              required="#{bindings.LinesVO1.hints.BuyerId.mandatory}"
+                              columns="#{bindings.LinesVO1.hints.BuyerId.displayWidth}"
+                              maximumLength="#{bindings.LinesVO1.hints.BuyerId.precision}"
+                              shortDesc="#{bindings.LinesVO1.hints.BuyerId.tooltip}"
+                              id="it8" partialTriggers="styleNameId">
+                  <f:validator binding="#{row.bindings.BuyerId.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.LinesVO1.hints.BuyerId.format}"/>
+                </af:inputText>
+              </af:column>
+            </af:table>
+          </af:panelCollection>
+        </af:panelHeader>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

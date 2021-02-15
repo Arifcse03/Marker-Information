@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="employLOV"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="mnj.mfg.model.lovs.employLOVRowImpl"
+  ComponentClass="mnj.mfg.model.lovs.employLOVImpl"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="mnj.mfg.model.lovs.employLOV_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="P_ORG_ID"
+    Kind="where"
+    Type="java.lang.String"
+    IsUpdateable="false">
+    <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
+  </Variable>
+  <SQLQuery>
+    <![CDATA[select ppf.LAST_NAME, ppd.segment2 , PPF.EMPLOYEE_NUMBER,pap.NAME
+  from per_people_f             ppf,
+       per_all_assignments_f     paaf,
+       per_all_positions        pap,
+       per_position_definitions ppd
+ where ppf.person_id = paaf.person_id
+   and paaf.position_id  = pap.position_id
+   and (UPPER(ppd.segment1) like '%MARKER%MAN%' or UPPER(ppd.segment1) like '%CAD%' or UPPER(ppd.segment2) like '%MARKER%MAN%' or UPPER(ppd.segment2) like '%CAD%')
+   --and UPPER(ppd.segment1) like '%MARKER%MAN%'
+   and pap.POSITION_DEFINITION_ID = ppd.POSITION_DEFINITION_ID
+   and sysdate between ppf.EFFECTIVE_START_DATE and ppf.EFFECTIVE_END_DATE
+   and sysdate between paaf.EFFECTIVE_START_DATE and paaf.EFFECTIVE_END_DATE
+   and paaf.organization_id in (SELECT org.ORGANIZATION_ID
+                       FROM HR_ALL_ORGANIZATION_UNITS ORG,
+                            PER_ORG_STRUCTURE_ELEMENTS OSE
+                      WHERE 1 = 1
+                        AND ORG.ORGANIZATION_ID = OSE.ORGANIZATION_ID_CHILD
+                 START WITH OSE.ORGANIZATION_ID_PARENT = DECODE(:P_ORG_ID,340,86,341,87,342,88,443,446)
+           CONNECT BY PRIOR OSE.ORGANIZATION_ID_CHILD  = OSE.ORGANIZATION_ID_PARENT
+                  UNION ALL
+                     SELECT TO_NUMBER (DECODE(:P_ORG_ID,340,86,341,87,342,88,443,446)) ORGANIZATION_ID FROM DUAL)]]>
+  </SQLQuery>
+  <ViewAttribute
+    Name="LastName"
+    IsUpdateable="false"
+    IsPersistent="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LAST_NAME"
+    Expression="LAST_NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="150"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.lovs.employLOV.LastName_LABEL"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Segment2"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="60"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SEGMENT2"
+    Expression="SEGMENT2"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="60"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="20"/>
+        <LABEL
+          ResId="mnj.mfg.model.lovs.employLOV.Segment2_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="EmployeeNumber"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="EMPLOYEE_NUMBER"
+    Expression="EMPLOYEE_NUMBER"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.lovs.employLOV.EmployeeNumber_LABEL"/>
+        <DISPLAYWIDTH
+          Value="20"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Name"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="240"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="NAME"
+    Expression="NAME"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="mnj.mfg.model.lovs.employLOV.Name_LABEL"/>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="model.ModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

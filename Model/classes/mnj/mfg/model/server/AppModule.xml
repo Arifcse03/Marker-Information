@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AppModule"
+  Version="11.1.1.62.29"
+  InheritPersonalization="true"
+  ClearCacheOnRollback="true"
+  ComponentClass="mnj.mfg.model.server.AppModuleImpl"
+  DefClass="mnj.mfg.model.server.AppModuleDefImpl"
+  ComponentInterface="mnj.mfg.model.server.common.AppModule"
+  ClientProxyName="mnj.mfg.model.server.client.AppModuleClient">
+  <DesignTime>
+    <Attr Name="_deployType" Value="0"/>
+    <Attr Name="_isDefCodegen" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewUsage
+    Name="HeaderVO1"
+    ViewObjectName="mnj.mfg.model.views.HeaderVO"/>
+  <ViewUsage
+    Name="LinesVO1"
+    ViewObjectName="mnj.mfg.model.views.LinesVO"/>
+  <ViewUsage
+    Name="operatingUnitsVO1"
+    ViewObjectName="mnj.mfg.model.lovs.operatingUnitsVO"/>
+  <ViewLinkUsage
+    Name="HeaderLineVL1"
+    ViewLinkObjectName="mnj.mfg.model.entities.HeaderLineVL"
+    SrcViewUsageName="mnj.mfg.model.server.AppModule.HeaderVO1"
+    DstViewUsageName="mnj.mfg.model.server.AppModule.LinesVO1"
+    Reversed="false"/>
+  <ClientInterface>
+    <Method
+      Name="getUnitName">
+      <Return
+        Type="java.lang.String"/>
+      <Parameter
+        Name="orgId"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="setSessionValues">
+      <Return
+        Type="void"/>
+      <Parameter
+        Name="orgId"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="userId"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="respId"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="respAppl"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+</AppModule>

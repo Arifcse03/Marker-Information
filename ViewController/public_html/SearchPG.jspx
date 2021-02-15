@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:panelGroupLayout layout="vertical" id="pgl1"
+                             inlineStyle="width:993px; height:605px;">
+          <af:panelHeader text="Header" id="ph1" inlineStyle="width:999px;"
+                          visible="false">
+            <af:query id="qryId1" headerText="Search" disclosed="false"
+                      value="#{bindings.HeaderVOCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.HeaderVOCriteriaQuery.queryModel}"
+                      queryListener="#{bindings.HeaderVOCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.HeaderVOCriteriaQuery.processQueryOperation}"
+                      resultComponentId="::pc1:resId1"/>
+          </af:panelHeader>
+          <af:panelHeader text="Search Page" id="ph2"
+                          inlineStyle="width:977px; height:525px;">
+            <f:facet name="context"/>
+            <f:facet name="menuBar"/>
+            <f:facet name="toolbar"/>
+            <f:facet name="legend"/>
+            <f:facet name="info"/>
+            <af:panelCollection id="pc1"
+                                inlineStyle="width:966px; height:471px;">
+              <f:facet name="menus"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t1">
+                  <af:commandButton actionListener="#{bindings.CreateInsert.execute}"
+                                    text="Create"
+                                    id="cb1" action="goEdit"/>
+                  <af:commandButton actionListener="#{bindings.setCurrentRowWithKey.execute}"
+                                    text="Edit"
+                                    id="cb2" action="goEdit" visible="false"/>
+                  <af:commandButton actionListener="#{bindings.Commit.execute}"
+                                    text="Save"
+                                    id="cb3"/>
+                  <af:commandButton actionListener="#{bindings.Delete.execute}"
+                                    text="Delete"
+                                    id="cb5"/>
+                </af:toolbar>
+              </f:facet>
+              <f:facet name="statusbar"/>
+              <af:table value="#{bindings.HeaderVO1.collectionModel}" var="row"
+                        rows="#{bindings.HeaderVO1.rangeSize}"
+                        emptyText="#{bindings.HeaderVO1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        fetchSize="#{bindings.HeaderVO1.rangeSize}"
+                        rowBandingInterval="0"
+                        filterModel="#{bindings.HeaderVOCriteriaQuery.queryDescriptor}"
+                        queryListener="#{bindings.HeaderVOCriteriaQuery.processQuery}"
+                        filterVisible="true" varStatus="vs"
+                        selectedRowKeys="#{bindings.HeaderVO1.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.HeaderVO1.collectionModel.makeCurrent}"
+                        rowSelection="single" id="resId1"
+                        partialTriggers="::cb1 ::cb2 ::cb5 cl1" width="966">
+                <af:column headerText="Doc No"
+                           id="c1" align="center" width="131"
+                           sortProperty="Attribute1" sortable="true"
+                           filterable="true">
+                  <af:outputText value="#{row.Attribute1}" id="ot4"
+                                 visible="false"/>
+                  <af:commandLink actionListener="#{bindings.setCurrentRowWithKeyValue.execute}"
+                                  text="#{row.Attribute1}"
+                                  disabled="#{!bindings.setCurrentRowWithKeyValue.enabled}"
+                                  id="cl1" action="goEdit"/>
+                </af:column>
+                <af:column sortProperty="CadOpName" filterable="true"
+                           sortable="true" headerText="CAD Operator Name"
+                           id="resId1c4" align="center" width="150"
+                           rendered="false">
+                  <af:outputText value="#{row.CadOpName}" id="ot2"/>
+                </af:column>
+                <af:column headerText="POC ID"
+                           id="c7" align="center" sortable="true"
+                           filterable="true" sortProperty="PocId">
+                  <af:outputText value="#{row.PocId}" id="ot10">
+                    <af:convertNumber groupingUsed="false"
+                                      pattern="#{bindings.HeaderVO1.hints.PocId.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column headerText="Buyer"
+                           id="c8" align="center" sortable="true"
+                           filterable="true" sortProperty="BuyerNew">
+                  <af:outputText value="#{row.BuyerNew}" id="ot11"/>
+                </af:column>
+                <af:column sortProperty="CadOperatorId" filterable="true"
+                           sortable="true" headerText="CAD Operator ID"
+                           id="resId1c3" align="center" width="100"
+                           rendered="false">
+                  <af:outputText value="#{row.CadOperatorId}" id="ot1"/>
+                </af:column>
+                <af:column headerText="Buyer Name"
+                           id="c2" sortable="true"
+                           sortProperty="BueryShortcode" filterable="true"
+                           width="150" align="center" visible="false">
+                  <af:outputText value="#{row.BueryShortcode}" id="ot5"/>
+                </af:column>
+                <af:column headerText="Season / Lot"
+                           id="c9" sortable="true" filterable="true"
+                           sortProperty="SeasonNew" align="center">
+                  <af:outputText value="#{row.SeasonNew}" id="ot12"/>
+                </af:column>
+                <af:column headerText="Season / Lot"
+                           id="c3" sortable="true" sortProperty="Season"
+                           filterable="true" width="150" align="center"
+                           visible="false">
+                  <af:outputText value="#{row.Season}" id="ot6"/>
+                </af:column>
+                <af:column headerText="Style "
+                           id="c4" sortable="true" sortProperty="StyleName"
+                           filterable="true" width="150" align="center">
+                  <af:outputText value="#{row.StyleName}" id="ot7"/>
+                </af:column>
+                <af:column sortProperty="MarkerDate" filterable="true"
+                           sortable="true" headerText="Date" id="resId1c2"
+                           align="center" width="100">
+                  <af:outputText value="#{row.MarkerDate}" id="ot3">
+                    <af:convertDateTime pattern="#{bindings.HeaderVO1.hints.MarkerDate.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column headerText="Ratio Plan No"
+                           id="c5" sortProperty="MarkerPlanNumber"
+                           align="center" sortable="true" filterable="true">
+                  <af:outputText value="#{row.MarkerPlanNumber}" id="ot8"/>
+                </af:column>
+                <af:column headerText="Marker ID"
+                           id="c6" sortProperty="MarkerId" align="center"
+                           sortable="true" filterable="true">
+                  <af:outputText value="#{row.MarkerId}" id="ot9"/>
+                </af:column>
+              </af:table>
+            </af:panelCollection>
+          </af:panelHeader>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

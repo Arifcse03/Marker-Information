@@ -1,0 +1,3 @@
+BuyerID,StyleName,CutPlanNo,RatioPlanNo,MarkerID,Yards,Inch,Meter,MarkerWidth,MarkerEfficency,MarkerAreaInch,FunctionalArea,MarkerWidthMeter,ShrinkagePattern,Remarks
+1046,Lala Style,2016/13,2016/13/1,123,10,12,9.45,60,85,1,2,3,P1,Test Record
+1047,BABU,2016/19,2016/13/1,921,12,6,8,40,65,1,2,3,P2,Test Record 2

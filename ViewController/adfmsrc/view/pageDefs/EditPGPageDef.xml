@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.62.29" id="EditPGPageDef"
+                Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="HeaderVO1" RangeSize="25"
+              DataControl="AppModuleDataControl" id="HeaderVO1Iterator"/>
+    <iterator Binds="LinesVO1" RangeSize="25" DataControl="AppModuleDataControl"
+              id="LinesVO1Iterator"/>
+    <searchRegion Binds="LinesVO1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="LinesVO1Query"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="HeaderVO1Iterator" id="MarkerDate">
+      <AttrNames>
+        <Item Value="MarkerDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="HeaderVO1Iterator" id="CadOperatorId">
+      <AttrNames>
+        <Item Value="CadOperatorId"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="LinesVO1Iterator" id="LinesVO1">
+      <nodeDefinition DefName="mnj.mfg.model.views.LinesVO" Name="LinesVO10">
+        <AttrNames>
+          <Item Value="BuyerId"/>
+          <Item Value="Season"/>
+          <Item Value="Brand"/>
+          <Item Value="StyleName"/>
+          <Item Value="MarkerPlanNumber"/>
+          <Item Value="MarkerId"/>
+          <Item Value="Color"/>
+          <Item Value="Yds"/>
+          <Item Value="Inch"/>
+          <Item Value="Meter"/>
+          <Item Value="MarkerWidth"/>
+          <Item Value="FunctionalArea"/>
+          <Item Value="MarkerEfficiency"/>
+          <Item Value="ShrinkagePattern" Binds="ShrinkagePattern1"/>
+          <Item Value="Remarks"/>
+          <Item Value="MarkerWidthMeter"/>
+          <Item Value="MarkerAreaInch"/>
+          <Item Value="Attribute1"/>
+          <Item Value="PocId"/>
+          <Item Value="CustomerName"/>
+          <Item Value="StyleNew"/>
+          <Item Value="SeasonNew"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModuleDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction" DataControl="AppModuleDataControl"/>
+    <action IterBinding="LinesVO1Iterator" id="CreateInsert"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action IterBinding="LinesVO1Iterator" id="Delete"
+            RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="HeaderVO1Iterator" id="Attribute1">
+      <AttrNames>
+        <Item Value="Attribute1"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues StaticList="false" IterBinding="HeaderVO1Iterator"
+                  Uses="LOV_Attribute2" id="Attribute2"/>
+    <listOfValues StaticList="false" IterBinding="HeaderVO1Iterator"
+                  Uses="LOV_CadOpName" id="CadOpName1"/>
+    <listOfValues StaticList="false" IterBinding="HeaderVO1Iterator"
+                  Uses="LOV_Buyer" id="Buyer"/>
+    <listOfValues StaticList="false" IterBinding="LinesVO1Iterator"
+                  Uses="LOV_ShrinkagePattern" id="ShrinkagePattern"/>
+    <list IterBinding="LinesVO1Iterator" StaticList="false"
+          Uses="LOV_ShrinkagePattern" id="ShrinkagePattern1"
+          DTSupportsMRU="true"/>
+    <attributeValues IterBinding="LinesVO1Iterator" id="Attribute11">
+      <AttrNames>
+        <Item Value="Attribute1"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>
