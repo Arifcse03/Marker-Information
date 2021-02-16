@@ -55,14 +55,8 @@
     Name="patternLov1"
     ViewObjectName="mnj.mfg.model.lovs.patternLov">
     <ParameterMap>
-      <PIMap Variable="P_BUYER_ID">
-        <TransientExpression><![CDATA[BuyerId]]></TransientExpression>
-      </PIMap>
-      <PIMap Variable="P_STYLE">
-        <TransientExpression><![CDATA[StyleName]]></TransientExpression>
-      </PIMap>
-      <PIMap Variable="P_CUT_NO">
-        <TransientExpression><![CDATA[MarkerPlanNumber]]></TransientExpression>
+      <PIMap Variable="poc_id">
+        <TransientExpression><![CDATA[PocId]]></TransientExpression>
       </PIMap>
     </ParameterMap>
   </ViewAccessor>

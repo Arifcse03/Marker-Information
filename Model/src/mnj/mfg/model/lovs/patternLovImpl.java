@@ -14,51 +14,20 @@ public class patternLovImpl extends ViewObjectImpl {
     public patternLovImpl() {
     }
 
+
     /**
-     * Returns the bind variable value for P_BUYER_ID.
-     * @return bind variable value for P_BUYER_ID
+     * Returns the bind variable value for poc_id.
+     * @return bind variable value for poc_id
      */
-    public String getP_BUYER_ID() {
-        return (String)getNamedWhereClauseParam("P_BUYER_ID");
+    public String getpoc_id() {
+        return (String)getNamedWhereClauseParam("poc_id");
     }
 
     /**
-     * Sets <code>value</code> for bind variable P_BUYER_ID.
-     * @param value value to bind as P_BUYER_ID
+     * Sets <code>value</code> for bind variable poc_id.
+     * @param value value to bind as poc_id
      */
-    public void setP_BUYER_ID(String value) {
-        setNamedWhereClauseParam("P_BUYER_ID", value);
-    }
-
-    /**
-     * Returns the bind variable value for P_STYLE.
-     * @return bind variable value for P_STYLE
-     */
-    public String getP_STYLE() {
-        return (String)getNamedWhereClauseParam("P_STYLE");
-    }
-
-    /**
-     * Sets <code>value</code> for bind variable P_STYLE.
-     * @param value value to bind as P_STYLE
-     */
-    public void setP_STYLE(String value) {
-        setNamedWhereClauseParam("P_STYLE", value);
-    }
-
-    /**
-     * Returns the bind variable value for P_CUT_NO.
-     * @return bind variable value for P_CUT_NO
-     */
-    public String getP_CUT_NO() {
-        return (String)getNamedWhereClauseParam("P_CUT_NO");
-    }
-
-    /**
-     * Sets <code>value</code> for bind variable P_CUT_NO.
-     * @param value value to bind as P_CUT_NO
-     */
-    public void setP_CUT_NO(String value) {
-        setNamedWhereClauseParam("P_CUT_NO", value);
+    public void setpoc_id(String value) {
+        setNamedWhereClauseParam("poc_id", value);
     }
 }

@@ -24,37 +24,27 @@
     </SchemaBasedProperties>
   </Properties>
   <Variable
-    Name="P_BUYER_ID"
-    Kind="where"
-    Type="java.lang.String"/>
-  <Variable
-    Name="P_STYLE"
-    Kind="where"
-    Type="java.lang.String"/>
-  <Variable
-    Name="P_CUT_NO"
+    Name="poc_id"
     Kind="where"
     Type="java.lang.String"/>
   <SQLQuery>
-    <![CDATA[SELECT SHRINK_PATTERN Pattern,
+    <![CDATA[SELECT distinct SHRINK_PATTERN Pattern,
        NVL(LENGTH_WISE_FROM,0)Length_From,
        NVL(LENGTH_WISE_TO,0) Length_To,
        NVL(WIDTH_WISE_FROM,0)Width_From,
        NVL(WIDTH_WISE_TO,0) Width_to
-  FROM 
+   FROM 
        MNJ_MFG_FABINS_PTRNALOC_L MMFPLD,
        MNJ_MFG_FABINS_PROD_L     MMFPL,
-       MNJ_MFG_FABRIC_INS_TEST_H MMFIH
+       MNJ_MFG_FABRIC_INS_TEST_H MMFIH,
+       xx_om_poc_h_t h,
+        xx_om_poc_l_t l
  WHERE 
        MMFPLD.PROD_L_ID = MMFPL.PROD_L_ID
    AND MMFIH.HEADER_ID  = MMFPL.HEADER_ID
-   AND MMFPL.BUYER_ID   = :P_BUYER_ID
-   AND MMFPL.STYLE      = :P_STYLE
-   AND MMFPL.COLOR       = (SELECT DISTINCT MMR.COLOR 
-                             FROM MNJ_MFG_RATIOPLAN MMR , MNJ_MFG_RATIOPLAN_PLYLINE MMRP 
-                            WHERE MMR.RATIOPLAN_ID = MMRP.RATIOPLAN_ID 
-                              AND MMRP.CUT_NO = :P_CUT_NO 
-                              AND ROWNUM = 1 )]]>
+   and MMFPL.SYSTEM_ID=l.SYSTEM_ID --21502
+   and h.POC_ID=l.POC_ID
+   and h.poc_id=:poc_id]]>
   </SQLQuery>
   <ViewAttribute
     Name="Pattern"
