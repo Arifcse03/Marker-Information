@@ -80,7 +80,7 @@
       <list n="profileList">
          <string v="MarkerInfo_application1"/>
       </list>
-      <value n="Weblogic-JDBC-Auto-Sync-Key" v="false"/>
+      <value n="Weblogic-JDBC-Auto-Sync-Key" v="true"/>
    </hash>
    <hash n="oracle.mds.internal.dt.ide.CustOptions">
       <list n="customizationLibraries">
