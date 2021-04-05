@@ -26,8 +26,7 @@
   <Variable
     Name="P_ORG_ID"
     Kind="where"
-    Type="java.lang.String"
-    IsUpdateable="false">
+    Type="java.lang.String">
     <TransientExpression><![CDATA[adf.context.sessionScope.orgId]]></TransientExpression>
   </Variable>
   <SQLQuery>

@@ -229,7 +229,7 @@
               </af:column>
               <af:column headerText="Cut Plan No"
                          id="c10" align="center" sortable="true"
-                         filterable="true" sortProperty="Brand">
+                         filterable="true" sortProperty="Brand" width="120">
                 <af:inputListOfValues id="brandId"
                                       popupTitle="Search and Select: #{bindings.LinesVO1.hints.Brand.label}"
                                       value="#{row.bindings.Brand.inputValue}"
@@ -379,7 +379,8 @@
               </af:column>
               <af:column headerText="Shrinkage Pattern"
                          id="c16" align="center" sortable="true"
-                         filterable="true" sortProperty="ShrinkagePattern">
+                         filterable="true" sortProperty="ShrinkagePattern"
+                         width="130">
                 <af:inputListOfValues id="shrinkagePatternId"
                                       popupTitle="Search and Select: Shrinkage Pattern"
                                       value="#{row.bindings.ShrinkagePattern.inputValue}"

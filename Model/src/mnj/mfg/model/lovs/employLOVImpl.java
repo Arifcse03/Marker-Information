@@ -21,4 +21,12 @@ public class employLOVImpl extends ViewObjectImpl {
     public String getP_ORG_ID() {
         return (String)getNamedWhereClauseParam("P_ORG_ID");
     }
+
+    /**
+     * Sets <code>value</code> for bind variable P_ORG_ID.
+     * @param value value to bind as P_ORG_ID
+     */
+    public void setP_ORG_ID(String value) {
+        setNamedWhereClauseParam("P_ORG_ID", value);
+    }
 }
