@@ -159,6 +159,8 @@
       <Item Value="Buyer"/>
       <Item Value="Season"/>
       <Item Value="Style"/>
+      <Item Value="Color"/>
+      <Item Value="Wash"/>
     </AttrArray>
     <DisplayCriteria
       Hint="showAndExecute"/>
